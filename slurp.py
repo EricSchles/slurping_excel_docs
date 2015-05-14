@@ -17,7 +17,9 @@ print 'linked account: ', client.account_info()
 while True:
     r= requests.get("http://www.nyc.gov/html/tlc/downloads/excel/nys_dmv_revoked_suspended_drivers_licenses.xls")
     filename = datetime.now().strftime("%Y%m%d")+"suspended.xls"
-    with open(filename,"wb") as f:
+    with open(filename,"wb+") as f:
+        f.write(r.content)
+        f.seek(0)
         client.put_file(filename,f)
     print "uploaded:", filename
     time.sleep(86400)
