@@ -1,0 +1,5 @@
+import requests
+
+r= requests.get("http://www.nyc.gov/html/tlc/downloads/excel/nys_dmv_revoked_suspended_drivers_licenses.xls")
+with open("suspended.xls","wb") as f:
+    f.write(r.content)
